@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello Thymeleaf</title>
+</head>
+<body>
+	<ul>
+		<li>
+			@{foo/bar} = [[@{foo/bar}]]
+		</li>
+		<li>
+			@{/foo/bar} = [[@{/foo/bar}]]
+		</li>
+		<li>
+			@{~/foo/bar} = [[@{~/foo/bar}]]
+		</li>
+		<li>
+			@{http://localhost:8080/foo/bar} = [[@{http://localhost:8080/foo/bar}]]
+		</li>
+		<li>
+			@{//localhost:8080/foo/bar} = [[@{//localhost:8080/foo/bar}]]
+		</li>
+	</ul>
+</body>
+</html>

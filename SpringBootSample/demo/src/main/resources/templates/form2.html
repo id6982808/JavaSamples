@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form Sample</title>
+</head>
+<body>
+	<form th:action="@{/form2}" method="post" th:object="${myFormCheckBox}">
+		<label th:for="${#ids.next('checked')}">checked</label>
+		<input type="checkbox" th:field="*{checked}"/>
+		<input type="submit" value="Submit"/>
+	</form>
+</body>
+</html>
