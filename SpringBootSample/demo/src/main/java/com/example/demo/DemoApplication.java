@@ -17,6 +17,7 @@ public class DemoApplication {
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasename("messages/Messages");
+		messageSource.addBasenames("messages/Messages", "messages/validation-messages");
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
 	}
