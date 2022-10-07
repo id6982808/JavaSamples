@@ -1,9 +1,18 @@
-DROP TABLE mydata IF EXISTS;
+DROP TABLE my_data IF EXISTS;
 
-CREATE TABLE mydata  (
+CREATE TABLE my_data  (
     id INTEGER IDENTITY NOT NULL PRIMARY KEY,
     name VARCHAR(20),
     mail VARCHAR(20),
     tel VARCHAR(20),
     age INTEGER
+);
+
+DROP TABLE item IF EXISTS;
+
+CREATE TABLE item (
+	id BIGINT IDENTITY NOT NULL PRIMARY KEY,
+	name VARCHAR(255),
+	price FLOAT,
+	vendor VARCHAR(255)
 );

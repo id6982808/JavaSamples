@@ -1,29 +1,28 @@
 package com.gradleproject.demo_gradle.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class MyData {
 	
 	@Id
-	protected Integer id;
-	protected String name;
-	protected String mail;
-	protected String tel;
-	protected int age;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column(name="name", nullable=false, length = 20)
+	private String name;
+	@Column(name="mail", nullable=false, length = 20)
+	private String mail;
+	@Column(name="tel", nullable=false, length = 20)
+	private String tel;
+	@Column(name="age", nullable=false)
+	private int age;
 	
 	public MyData() {
-		super();
-	}
-	
-	public MyData(String name, String mail,
-			String tel, int age) {
-		super();
-		this.name = name;
-		this.mail = mail;
-		this.tel = tel;
-		this.age = age;
+		
 	}
 	
 	public String toString() {

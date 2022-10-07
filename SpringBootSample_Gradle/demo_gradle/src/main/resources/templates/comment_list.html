@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CommentApp</title>
+</head>
+<body>
+	<h3>コメント投稿アプリ</h3>
+	<div th:if="${comments.size() == 0}">
+		投稿されたコメントはありません。
+	</div>
+	<table>
+		<div th:each="comment : ${comments}" th:inline="text">
+			<tr>
+				<td><a th:href="@{/comment/delete?(id=*{comment.id})}"><button>削除</button></a></td>
+				<td>&nbsp;[[${comment.content}]]</td>
+			</tr>
+		</div>
+	</table>
+	<hr>
+	<form th:action="@{/comment/add}" th:object="${comment}" method="post">
+		<input type="text" th:field="*{content}">
+		<button>投稿</button>
+		<br/>
+		<small style="coler:red" th:errors="*{content}"></small>
+	</form>
+	<br/>
+</body>
+</html>
