@@ -31,7 +31,7 @@ public class ItemController {
 	
 	@GetMapping("{id}")
 	public String show(@PathVariable Long id, Model model) {
-		model.addAttribute("item", itemRepository.findById(id));
+		model.addAttribute("item", itemRepository.findById(id).get());
 		return "show";
 	}
 	
@@ -42,7 +42,7 @@ public class ItemController {
 	
 	@GetMapping("{id}/edit")
 	public String edit(@PathVariable Long id, @ModelAttribute("item") Item item, Model model) {
-		model.addAttribute("item", itemRepository.findById(id));
+		model.addAttribute("item", itemRepository.findById(id).get());
 		return "edit";
 	}
 	

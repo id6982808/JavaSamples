@@ -1,6 +1,8 @@
 package com.gradleproject.demo_gradle.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -16,6 +18,7 @@ import lombok.Setter;
 public class Item {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank(message="商品名を記入してください。")
