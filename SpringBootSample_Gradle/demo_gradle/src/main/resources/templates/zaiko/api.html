@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>APIテスト実行</title>
+</head>
+<body>
+	<h1>APIテスト実行画面</h1>
+	<form th:action="@{/zaiko/api/test/insert}" th:method="get">
+		<button type="submit" class="btn btn-success">実行 : 一覧画面テストデータ投入API</button>
+	</form>
+	<br/>
+	<form th:action="@{/zaiko/api/deleteall}" th:method="get">
+		<button type="submit" class="btn btn-success">実行 : 全データ削除API</button>
+	</form>
+	<br/>
+	<div style="height:50px; background-color: #f5af7d;">
+		<a href="/zaiko">TOP画面</a>
+	</div>
+</body>
+</html>

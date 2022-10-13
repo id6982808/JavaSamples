@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head th:insert="players/layout">
+<meta charset="UTF-8">
+<title>在庫管理システム</title>
+</head>
+<body>
+	<div class="container">
+		<h1>在庫詳細</h1>
+		<br/>
+		<div class="" style="height:50px; background-color: #f5af7d;">
+			<a style="width:100px;" href="/zaiko">TOP画面</a>
+			<a href="/zaiko/list">在庫一覧</a>
+		</div>
+		<br/>
+		<table class="table table-bordered table-hover">
+			<tbody th:object="${zaiko}">
+				<tr>
+					<td class="table-info">ID</td>
+					<td th:text="*{id}"></td>
+				</tr>
+				<tr>
+					<td class="table-info">商品名</td>
+					<td th:text="*{productName}"></td>
+				</tr>
+				<tr>
+					<td class="table-info">在庫数</td>
+					<td th:text="*{zaikosu}"></td>
+				</tr>
+				<tr>
+					<td class="table-info">備考</td>
+					<td th:text="*{biko}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<button type="button" class="btn btn-success" th:attr="onClick='location.href=\''+@{/zaiko/{id}/edit(id=*{id})}+'\''">修正</button>
+		</div>
+		<br/>
+		<div class="" style="height:50px; background-color: #f5af7d;">
+			<a style="width:100px;" href="/zaiko">TOP画面</a>
+			<a href="/zaiko/list">在庫一覧</a>
+		</div>
+	</div>
+</body>
+</html>
