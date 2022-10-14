@@ -34,6 +34,7 @@
 			</tbody>
 		</table>
 		<div>
+			<button type="button" class="btn btn-default" th:attr="onClick='location.href=\''+@{/zaiko/list}+'\''">一覧画面へ</button>
 			<button type="button" class="btn btn-success" th:attr="onClick='location.href=\''+@{/zaiko/{id}/edit(id=*{id})}+'\''">修正</button>
 		</div>
 		<br/>
