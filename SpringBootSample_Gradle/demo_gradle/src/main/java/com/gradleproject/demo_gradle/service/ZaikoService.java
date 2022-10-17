@@ -46,8 +46,8 @@ public class ZaikoService {
 	 * @param id
 	 * @return
 	 */
-	public Zaiko findOne(Long id) {
-		return zaikoRepository.findById(id).orElse(null);
+	public ZaikoDto findOne(Long id) {
+		return zaikoDtoRepository.selectOne(id);
 	}
 	
 	/***
@@ -55,15 +55,17 @@ public class ZaikoService {
 	 * @param zaiko
 	 * @return
 	 */
-	public ZaikoDto save(ZaikoDto zaikoDto) {
+	public void save(ZaikoDto zaikoDto) {
 		
 		Zaiko zaiko = new Zaiko();
 		ZaikoLocation zaikoLocation = new ZaikoLocation();
 		
 		// DTOからエンティティへ詰め替え
+		zaiko.setId(zaikoDto.getZaikoId());
 		zaiko.setProductName(zaikoDto.getProductName());
 		zaiko.setZaikosu(zaikoDto.getZaikosu());
 		zaiko.setBiko(zaikoDto.getBiko());
+		zaikoLocation.setId(zaikoDto.getLocationId());
 		zaikoLocation.setLocationName(zaikoDto.getLocationName());
 		
 		// 在庫テーブル登録、登録後にIDを取得する
@@ -73,24 +75,21 @@ public class ZaikoService {
 		zaikoLocation.setZaikoId(zaiko.getId());
 		// 在庫保管場所テーブル登録
 		zaikoLocationRepository.save(zaikoLocation);
-		
-		zaikoDto.setZaikoId(zaiko.getId());
-		zaikoDto.setLocationId(zaikoLocation.getId());
-		return zaikoDto;
 	}
 	
 	/***
 	 * テーブルのデータ件数
 	 * @return
 	 */
-	public long count() {
-		return zaikoRepository.count();
+	public long countAll() {
+		return zaikoDtoRepository.selectForCountAll();
 	}
 	
 	/***
 	 * 全件削除
 	 */
 	public void deleteAll() {
+		zaikoLocationRepository.deleteAll();
 		zaikoRepository.deleteAll();
 	}
 	
@@ -99,6 +98,7 @@ public class ZaikoService {
 	 * @param id
 	 */
 	public void delete(Long id) {
+		zaikoLocationRepository.deleteByForeignKey(id);
 		zaikoRepository.deleteById(id);
 	}
 	
@@ -108,7 +108,7 @@ public class ZaikoService {
 	public void insertByTestData() {
 		
 		int num_of_record = 100;
-		int count = (int)count();
+		int count = (int)countAll();
 		
 		for (int i = 0 + count; i < num_of_record + count; i++) {
 			Zaiko tmp = new Zaiko();

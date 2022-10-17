@@ -7,11 +7,7 @@
 <body>
 	<div class="container">
 		<h1>在庫新規登録</h1>
-		<br/>
-		<div class="" style="height:50px; background-color: #f5af7d;">
-			<a style="width:100px;" href="/zaiko">TOP画面</a>
-			<a href="/zaiko/list">在庫一覧</a>
-		</div>
+		<div th:insert="zaiko/common_header_footer"></div>
 		<form th:action="@{/zaiko/regist}" th:method="post" th:object="${zaikoDto}">
 			<div class="form-group" th:classappend="${#fields.hasErrors('productName')}? has-error">
 				<label class="control-label">商品名</label>
@@ -36,13 +32,7 @@
 			<button type="button" class="btn btn-default" th:attr="onClick='location.href=\''+@{/zaiko}+'\''">TOP画面へ</button>
 			<button class="btn btn-success regist-action" type="submit">登録実行</button>
 		</form>
-		<br/>
-		<div class="" style="height:50px; background-color: #f5af7d;">
-			<a style="width:100px;" href="/zaiko">TOP画面</a>
-			<a href="/zaiko/list">在庫一覧</a>
-		</div>
-		<br/>
-		<br/>
+		<div th:insert="zaiko/common_header_footer"></div>
 	</div>
 	
 	<script>

@@ -7,17 +7,12 @@
 <body>
 	<div class="container">
 		<h1>在庫詳細</h1>
-		<br/>
-		<div class="" style="height:50px; background-color: #f5af7d;">
-			<a style="width:100px;" href="/zaiko">TOP画面</a>
-			<a href="/zaiko/list">在庫一覧</a>
-		</div>
-		<br/>
+		<div th:insert="zaiko/common_header_footer"></div>
 		<table class="table table-bordered table-hover">
-			<tbody th:object="${zaiko}">
+			<tbody th:object="${zaikoDto}">
 				<tr>
 					<td class="table-info">ID</td>
-					<td th:text="*{id}"></td>
+					<td th:text="*{zaikoId}"></td>
 				</tr>
 				<tr>
 					<td class="table-info">商品名</td>
@@ -28,6 +23,10 @@
 					<td th:text="*{zaikosu}"></td>
 				</tr>
 				<tr>
+					<td class="table-info">在庫保管場所</td>
+					<td th:text="*{locationName}"></td>
+				</tr>
+				<tr>
 					<td class="table-info">備考</td>
 					<td th:text="*{biko}"></td>
 				</tr>
@@ -35,13 +34,10 @@
 		</table>
 		<div>
 			<button type="button" class="btn btn-default" th:attr="onClick='location.href=\''+@{/zaiko/list}+'\''">一覧画面へ</button>
-			<button type="button" class="btn btn-success" th:attr="onClick='location.href=\''+@{/zaiko/{id}/edit(id=*{id})}+'\''">修正</button>
+			<button th:object="${zaikoDto}" type="button" class="btn btn-success" th:attr="onClick='location.href=\''+@{/zaiko/{id}/edit(id=*{zaikoId})}+'\''">修正</button>
 		</div>
 		<br/>
-		<div class="" style="height:50px; background-color: #f5af7d;">
-			<a style="width:100px;" href="/zaiko">TOP画面</a>
-			<a href="/zaiko/list">在庫一覧</a>
-		</div>
+		<div th:insert="zaiko/common_header_footer"></div>
 	</div>
 </body>
 </html>

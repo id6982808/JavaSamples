@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gradleproject.demo_gradle.dto.ZaikoDto;
-import com.gradleproject.demo_gradle.entities.Zaiko;
+import com.gradleproject.demo_gradle.entities.ItemMaster;
+import com.gradleproject.demo_gradle.service.ItemMasterService;
 import com.gradleproject.demo_gradle.service.ZaikoService;
 
 @Controller
@@ -29,6 +30,12 @@ public class ZaikoController {
 	 */
 	@Autowired
 	ZaikoService zaikoService;
+	
+	/***
+	 * 商品マスタレポジトリ アクセス用サービス
+	 */
+	@Autowired
+	ItemMasterService itemMasterService;
 	
 	/***
 	 * インデックスページ(TOP)
@@ -79,9 +86,9 @@ public class ZaikoController {
 	 */
 	@GetMapping("{id}/detail")
 	public String detail(@PathVariable Long id, Model model) {
-		Zaiko zaiko = zaikoService.findOne(id);
+		ZaikoDto zaikoDto = zaikoService.findOne(id);
 		
-		model.addAttribute("zaiko", zaiko);
+		model.addAttribute("zaikoDto", zaikoDto);
 		return "zaiko/detail";
 	}
 	
@@ -90,9 +97,9 @@ public class ZaikoController {
 	 */
 	@GetMapping("{id}/edit")
 	public String edit(@PathVariable Long id, Model model) {
-		Zaiko zaiko = zaikoService.findOne(id);
+		ZaikoDto zaikoDto = zaikoService.findOne(id);
 		
-		model.addAttribute("zaiko", zaiko);
+		model.addAttribute("zaikoDto", zaikoDto);
 		return "zaiko/edit";
 	}
 	
@@ -100,9 +107,9 @@ public class ZaikoController {
 	 * 修正実行
 	 */
 	@PutMapping("{id}/modify")
-	public String modify(@PathVariable Long id, @ModelAttribute Zaiko zaiko) {
-		zaiko.setId(id);
-		//zaikoService.save(zaiko);
+	public String modify(@PathVariable Long id, @ModelAttribute ZaikoDto zaikoDto) {
+		zaikoDto.setZaikoId(id);
+		zaikoService.save(zaikoDto);
 		
 		return "zaiko/detail";
 	}
@@ -116,6 +123,19 @@ public class ZaikoController {
 		
 		return list(model);
 	}
+	
+	/***
+	 * 商品マスタ 一覧表示
+	 */
+	@GetMapping("item_master")
+	public String item_master(Model model) {
+		List<ItemMaster> itemMasterList = itemMasterService.selectAll();
+		
+		model.addAttribute("itemMasterList", itemMasterList);
+		
+		return "zaiko/item_master";
+	}
+	
 	
 	/***
 	 * APIテスト実行画面

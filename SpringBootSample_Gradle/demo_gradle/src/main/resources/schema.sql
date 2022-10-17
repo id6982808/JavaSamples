@@ -35,3 +35,23 @@ CREATE TABLE zaiko_location (
 	constraint fk_zaiko_id foreign  key(zaiko_id) references zaiko(id)
 );
 
+CREATE TABLE IF NOT EXISTS item_master (
+	item_master_id BIGINT NOT NULL,
+	item_master_cd BIGINT NOT NULL,
+	item_name VARCHAR(200) NOT NULL,
+	item_price BIGINT NOT NULL,
+	primary key (item_master_id, item_master_cd)
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
