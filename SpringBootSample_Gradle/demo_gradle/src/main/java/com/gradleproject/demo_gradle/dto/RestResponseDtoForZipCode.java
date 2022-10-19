@@ -2,40 +2,34 @@ package com.gradleproject.demo_gradle.dto;
 
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class RestResponseDtoForZipCode {
 	
-	public String message;
+	private String message;
 	
-	public List<Result> results;
+	private List<Result> results;
 	
-	public String status;
+	private String status;
 	
+	@Data
 	public static class Result {
 		
-		public String address1;
+		private String address1;
 		
-		public String address2;
+		private String address2;
 		
-		public String address3;
+		private String address3;
 		
-		public String kana1;
+		private String kana1;
 		
-		public String kana2;
+		private String kana2;
 		
-		public String kana3;
+		private String kana3;
 		
-		public String prefcode;
+		private String prefcode;
 		
-		public String zipcode;
+		private String zipcode;
 	}
-	/*
-	private Map<String, String> results;
-	
-	public void setResults(String key, String value) {
-		results.put(key, value);
-	}
-	
-	public String getResults(String key) {
-		return results.get(key);
-	}*/
 }
